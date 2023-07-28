@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>TFT GUIDE Game Board</title>
     <link href="css/board.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/board.js"></script>
 </head>
 <body>
     <h1>Game Board</h1>
@@ -29,9 +30,9 @@
 
     <div id="item_use" class="flexBox">
         <span id="item_use_title">템 방향성 : </span>
-        <button id="item_AD" value="ad" onclick="">AD</button>
-        <button id="item_AP" value="ap" onclick="">AP</button>
-        <button id="item_DEF" value="def" onclick="">방템</button>
+        <button id="item_AD" value="ad" class="kind_of_use_item" onclick="clickUseItem(this)">AD</button>
+        <button id="item_AP" value="ap" class="kind_of_use_item" onclick="clickUseItem(this)">AP</button>
+        <button id="item_DEF" value="def" class="kind_of_use_item" onclick="clickUseItem(this)">방템</button>
     </div>
 
     <div id="recommend_champion" class="flexBox">

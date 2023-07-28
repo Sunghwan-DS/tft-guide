@@ -15,3 +15,7 @@
     float: left;
     margin-left: 20px;
 }
+
+.kind_of_use_item.active {
+    background-color: orangered;
+}
