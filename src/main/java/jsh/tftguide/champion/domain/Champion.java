@@ -1,10 +1,12 @@
 package jsh.tftguide.champion.domain;
 
 import com.opencsv.bean.CsvBindByPosition;
-import jsh.tftguide.synergy.domain.Synergy;
 import lombok.Data;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 public class Champion {
@@ -19,5 +21,9 @@ public class Champion {
     private String synergiesStr;
     @CsvBindByPosition(position = 4)
     private long value;
-    private List<Synergy> synergies;
+    private List<String> synergies;
+
+    public List<String> getSynergyNames() {
+        return Arrays.asList(synergiesStr.split("\\|"));
+    }
 }

@@ -17,5 +17,7 @@ public class Synergy {
     private long count;
     @CsvBindByPosition(position = 3)
     private long value;
+    @CsvBindByPosition(position = 4)
+    private long tier;
     private List<Champion> champions;
 }

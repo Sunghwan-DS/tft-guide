@@ -1,6 +1,6 @@
-package jsh.tftguide.synergy;
+package jsh.tftguide.champion;
 
-import jsh.tftguide.synergy.domain.Synergies;
+import jsh.tftguide.champion.domain.Champions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -8,20 +8,20 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static jsh.tftguide.synergy.domain.Synergies.SYNERGY_MAP;
+import static jsh.tftguide.champion.domain.Champions.CHAMPION_MAP;
 
 @Tag("integration")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class synergyServiceTest {
+public class ChampionServiceTest {
 
     @BeforeAll
     public void setup() {
-        Synergies.loadSyergiesInfo();
+        Champions.loadChampionsInfo();
     }
 
     @Test
-    @DisplayName("Read synergies.csv")
+    @DisplayName("Read champions.csv")
     void readChampionsTest() {
-        Assertions.assertEquals(SYNERGY_MAP.get(1L).getName(), "공허");
+        Assertions.assertEquals(CHAMPION_MAP.get(1L).getName(), "가렌");
     }
 }
