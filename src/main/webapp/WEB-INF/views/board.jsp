@@ -6,5 +6,62 @@
 </head>
 <body>
     <h1>Game Board</h1>
+    <div id="level">
+        <span id="level_title">Lv</span>
+        <span id="level_value">1</span>
+        <button id="levelup_btn" onclick="">레벨 업</button>
+    </div>
+
+    <div id="champion_use">
+        <ul class="champion_list">
+            <li>
+                <div>이미지1</div>
+                <div>이름1</div>
+            </li>
+            <li>
+                <div>이미지2</div>
+                <div>이름2</div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="item_use">
+        <span id="item_use_title">템 방향성 : </span>
+        <button id="item_AD" value="ad" onclick="">AD</button>
+        <button id="item_AP" value="ap" onclick="">AP</button>
+        <button id="item_DEF" value="def" onclick="">방템</button>
+    </div>
+
+    <div id="recommend_champion">
+        <span id="recommend_champion_title">추천 기물 : </span>
+        <ul class="champion_list">
+            <li>
+                <div>이미지1</div>
+                <div>이름1</div>
+                <div>추가시너지1</div>
+            </li>
+            <li>
+                <div>이미지2</div>
+                <div>이름2</div>
+                <div>추가시너지2</div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="recommend_deck">
+        <span id="recommend_deck_title">추천 덱 : </span>
+        <ul class="champion_list">
+            <li>
+                <div>이미지1</div>
+                <div>이름1</div>
+            </li>
+            <li>
+                <div>이미지2</div>
+                <div>이름2</div>
+            </li>
+        </ul>
+    </div>
+
+    <button>게임 종료</button>
 </body>
 </html>
