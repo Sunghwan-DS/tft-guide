@@ -3,6 +3,8 @@ package jsh.tftguide.item.domain;
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +18,7 @@ import java.util.stream.Collectors;
 public class Items {
 
     private static final String PATH = "csv/items.csv";
-    public static Map<Long, Item> items;
-
-    static {
-        items = readCSV().stream()
-                         .collect(Collectors.toMap(i1 -> i1.getId(),
-                                                   i2 -> i2)
-                         );
-    }
+    public static Map<Long, Item> itemsMap;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SneakyThrows
@@ -39,5 +34,19 @@ public class Items {
             log.error("{}", e.toString());
         }
         return List.of();
+    }
+
+
+    public static void loadItemsInfo() {
+        var csv = readCSV();
+        itemsMap = csv.stream()
+                      .collect(Collectors.toMap(i1 -> i1.getId(),
+                                                i2 -> i2)
+                      );
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void generateItemsInfo() {
+        loadItemsInfo();
     }
 }

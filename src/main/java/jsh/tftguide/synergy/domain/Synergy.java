@@ -10,12 +10,12 @@ import java.util.List;
 public class Synergy {
 
     @CsvBindByPosition(position = 0)
-    private final long id;
+    private long id;
     @CsvBindByPosition(position = 1)
-    private final String name;
+    private String name;
     @CsvBindByPosition(position = 2)
-    private final long count;
+    private long count;
     @CsvBindByPosition(position = 3)
-    private final long value;
-    private final List<Champion> champions;
+    private long value;
+    private List<Champion> champions;
 }

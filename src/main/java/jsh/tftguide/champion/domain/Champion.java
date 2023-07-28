@@ -10,14 +10,14 @@ import java.util.List;
 public class Champion {
 
     @CsvBindByPosition(position = 0)
-    private final long id;
+    private long id;
     @CsvBindByPosition(position = 1)
-    private final String name;
+    private String name;
     @CsvBindByPosition(position = 2)
-    private final long cost;
+    private long cost;
     @CsvBindByPosition(position = 3)
-    private final String synergiesStr;
+    private String synergiesStr;
     @CsvBindByPosition(position = 4)
-    private final long value;
-    private final List<Synergy> synergies;
+    private long value;
+    private List<Synergy> synergies;
 }

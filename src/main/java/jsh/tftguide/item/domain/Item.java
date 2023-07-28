@@ -7,9 +7,9 @@ import lombok.Data;
 public class Item {
 
     @CsvBindByPosition(position = 0)
-    private final long id;
+    private long id;
     @CsvBindByPosition(position = 1)
-    private final String name;
+    private String name;
     @CsvBindByPosition(position = 2)
-    private final ItemType itemType;
+    private ItemType itemType;
 }

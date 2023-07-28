@@ -7,7 +7,7 @@ import lombok.Value;
 @Builder
 public class PartItem {
 
-    private final long id;
-    private final String name;
-    private final ItemType itemType;
+    private long id;
+    private String name;
+    private ItemType itemType;
 }

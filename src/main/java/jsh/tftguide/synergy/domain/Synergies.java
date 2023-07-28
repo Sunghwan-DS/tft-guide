@@ -3,6 +3,8 @@ package jsh.tftguide.synergy.domain;
 import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +18,7 @@ import java.util.stream.Collectors;
 public class Synergies {
 
     private static final String PATH = "csv/synergies.csv";
-    public static final Map<Long, Synergy> synergiesMap;
-
-    static {
-        synergiesMap = readCSV().stream()
-                                .collect(Collectors.toMap(i1 -> i1.getId(),
-                                                          i2 -> i2)
-                                );
-    }
+    public static Map<Long, Synergy> synergiesMap;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SneakyThrows
@@ -39,5 +34,18 @@ public class Synergies {
             log.error("{}", e.toString());
         }
         return List.of();
+    }
+
+    public static void loadSyergiesInfo() {
+        var csv = readCSV();
+        synergiesMap = csv.stream()
+                          .collect(Collectors.toMap(i1 -> i1.getId(),
+                                                    i2 -> i2)
+                          );
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void generateSynergiesInfo() {
+        loadSyergiesInfo();
     }
 }
