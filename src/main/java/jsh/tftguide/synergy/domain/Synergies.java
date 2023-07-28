@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class Synergies {
 
-    private static final String PATH = "csv/synergies.csv";
-    public static Map<Long, Synergy> synergiesMap;
+    private static final String PATH = "static/csv/synergies.csv";
+    public static Map<Long, Synergy> SYNERGY_MAP;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SneakyThrows
@@ -28,8 +28,10 @@ public class Synergies {
                 new CsvToBeanBuilder(
                     new InputStreamReader(
                         new ClassPathResource(PATH).getInputStream()))
-                    .build().
-                    parse();
+                    .withType(Synergy.class)
+                    .withSkipLines(1)
+                    .build()
+                    .parse();
         } catch (Exception e) {
             log.error("{}", e.toString());
         }
@@ -38,10 +40,10 @@ public class Synergies {
 
     public static void loadSyergiesInfo() {
         var csv = readCSV();
-        synergiesMap = csv.stream()
-                          .collect(Collectors.toMap(i1 -> i1.getId(),
-                                                    i2 -> i2)
-                          );
+        SYNERGY_MAP = csv.stream()
+                         .collect(Collectors.toMap(i1 -> i1.getId(),
+                                                   i2 -> i2)
+                         );
     }
 
     @EventListener(ApplicationReadyEvent.class)
