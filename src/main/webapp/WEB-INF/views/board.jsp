@@ -3,16 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>TFT GUIDE Game Board</title>
+    <link href="css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <h1>Game Board</h1>
-    <div id="level">
+    <div id="level" class="flexBox">
         <span id="level_title">Lv</span>
         <span id="level_value">1</span>
         <button id="levelup_btn" onclick="">레벨 업</button>
     </div>
 
-    <div id="champion_use">
+    <div id="champion_use" class="flexBox">
+        <span id="champion_use_title">사용중인 기물 : </span>
         <ul class="champion_list">
             <li>
                 <div>이미지1</div>
@@ -25,14 +27,14 @@
         </ul>
     </div>
 
-    <div id="item_use">
+    <div id="item_use" class="flexBox">
         <span id="item_use_title">템 방향성 : </span>
         <button id="item_AD" value="ad" onclick="">AD</button>
         <button id="item_AP" value="ap" onclick="">AP</button>
         <button id="item_DEF" value="def" onclick="">방템</button>
     </div>
 
-    <div id="recommend_champion">
+    <div id="recommend_champion" class="flexBox">
         <span id="recommend_champion_title">추천 기물 : </span>
         <ul class="champion_list">
             <li>
@@ -48,7 +50,7 @@
         </ul>
     </div>
 
-    <div id="recommend_deck">
+    <div id="recommend_deck" class="flexBox">
         <span id="recommend_deck_title">추천 덱 : </span>
         <ul class="champion_list">
             <li>

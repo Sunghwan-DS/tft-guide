@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.flexBox {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.champion_list {
+    display: inline-block;
+    list-style: none;
+}
+
+.champion_list > li {
+    float: left;
+    margin-left: 20px;
+}
