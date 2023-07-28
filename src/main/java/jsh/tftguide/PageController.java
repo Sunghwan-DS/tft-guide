@@ -10,4 +10,9 @@ public class PageController {
     public String main() {
         return "main";
     }
+
+    @GetMapping("/board")
+    public String board() {
+        return "board";
+    }
 }
