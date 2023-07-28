@@ -8,10 +8,19 @@
 </head>
 <body>
     <h1>Game Board</h1>
+
+    <form name="frmMain" action="" method="get" accept-charset="utf-8">
+        <input type="hidden" name="level" value="1">
+        <input type="hidden" name="adItemYn" value="N">
+        <input type="hidden" name="apItemYn" value="N">
+        <input type="hidden" name="defItemYn" value="N">
+        <input type="hidden" name="championNos" value="">
+    </form>
+
     <div id="level" class="flexBox">
         <span id="level_title">Lv</span>
         <span id="level_value">1</span>
-        <button id="levelup_btn" onclick="">레벨 업</button>
+        <button id="levelup_btn" onclick="playerLevelUp()">레벨 업</button>
     </div>
 
     <div id="champion_use" class="flexBox">
@@ -30,9 +39,9 @@
 
     <div id="item_use" class="flexBox">
         <span id="item_use_title">템 방향성 : </span>
-        <button id="item_AD" value="ad" class="kind_of_use_item" onclick="clickUseItem(this)">AD</button>
-        <button id="item_AP" value="ap" class="kind_of_use_item" onclick="clickUseItem(this)">AP</button>
-        <button id="item_DEF" value="def" class="kind_of_use_item" onclick="clickUseItem(this)">방템</button>
+        <button id="item_AD" class="use_item_btn" onclick="clickUseAdItem(this)">AD</button>
+        <button id="item_AP" class="use_item_btn" onclick="clickUseApItem(this)">AP</button>
+        <button id="item_DEF" class="use_item_btn" onclick="clickUseDefItem(this)">방템</button>
     </div>
 
     <div id="recommend_champion" class="flexBox">

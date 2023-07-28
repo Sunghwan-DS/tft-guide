@@ -16,6 +16,6 @@
     margin-left: 20px;
 }
 
-.kind_of_use_item.active {
+.use_item_btn.active {
     background-color: orangered;
 }
