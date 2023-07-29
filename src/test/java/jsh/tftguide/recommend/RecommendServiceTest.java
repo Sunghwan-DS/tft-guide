@@ -4,6 +4,7 @@ import jsh.tftguide.champion.domain.Champion;
 import jsh.tftguide.champion.domain.Champions;
 import jsh.tftguide.champion.domain.Reroll;
 import jsh.tftguide.recommend.application.RecommendService;
+import jsh.tftguide.recommend.domain.RecommendRequest;
 import jsh.tftguide.synergy.domain.Synergies;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,8 +40,9 @@ public class RecommendServiceTest {
     public void getBestChampionsTest() {
 
         List<Champion> useChampions = List.of(CHAMPION_NAME_MAP.get("사미라"), CHAMPION_NAME_MAP.get("진"), CHAMPION_NAME_MAP.get("이렐리아"), CHAMPION_NAME_MAP.get("워윅"));
-        var recommendChampionList = recommendService.getBestChampions(useChampions, 5);
+        var recommendRequest = RecommendRequest.builder().level(5).champions(useChampions).build();
+        var recommendChampionList = recommendService.getBestChampions(recommendRequest);
         System.out.println(recommendChampionList.toString());
-        Assertions.assertEquals(recommendChampionList.get(0).getName(), "세트");
+        Assertions.assertEquals(recommendChampionList.get(0).getRecommendChampions().get(0).getName(), "세트");
     }
 }

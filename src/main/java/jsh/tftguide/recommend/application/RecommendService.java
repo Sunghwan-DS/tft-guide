@@ -1,9 +1,10 @@
 package jsh.tftguide.recommend.application;
 
-import jsh.tftguide.champion.domain.Champion;
+import jsh.tftguide.recommend.domain.RecommendChampion;
+import jsh.tftguide.recommend.domain.RecommendRequest;
 
 import java.util.List;
 
 public interface RecommendService {
-    List<Champion> getBestChampions(List<Champion> champions, int level);
+    List<RecommendChampion> getBestChampions(RecommendRequest request);
 }

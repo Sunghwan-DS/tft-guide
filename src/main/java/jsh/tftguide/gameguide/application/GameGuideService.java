@@ -5,5 +5,5 @@ import jsh.tftguide.gameguide.controller.GameGuideResponse;
 
 public interface GameGuideService {
 
-    GameGuideResponse getGameGuide(GameGuideRequest request);
+    GameGuideResponse getChampionsGuide(GameGuideRequest request);
 }
