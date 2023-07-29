@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static jsh.tftguide.champion.domain.Champions.CHAMPION_MAP;
-import static jsh.tftguide.champion.domain.Reroll.RerollMap;
+import static jsh.tftguide.champion.domain.Reroll.REROLL_MAP;
 
 @RequiredArgsConstructor
 @Service
@@ -73,7 +73,7 @@ public class RecommendServiceImpl implements RecommendService {
 
         CHAMPION_MAP.values()
                     .stream()
-                    .filter(champion -> champion.getCost() <= RerollMap.get(level).getRecommendValidationCost())
+                    .filter(champion -> champion.getCost() <= REROLL_MAP.get(level).getRecommendValidationCost())
                     .filter(champion -> !useChampionSet.contains(champion.getId()) && !result.getAddChampionIdSet().contains(champion.getId()))
                     .forEach(champion -> nextStep(useChampionSet, level, result, champion));
 

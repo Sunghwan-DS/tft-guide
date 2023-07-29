@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static jsh.tftguide.champion.domain.Champions.CHAMPION_MAP;
 import static jsh.tftguide.synergy.domain.Synergies.SYNERGY_MAP;
@@ -43,13 +44,17 @@ public class SynergyServiceImpl implements SynergyService {
 
             for (String synergyName : synergyNames) {
                 if (synergyCountMap.containsKey(synergyName)) {
-                    synergyCountMap.put(synergyName, synergyCountMap.get(synergyName));
+                    synergyCountMap.put(synergyName, synergyCountMap.get(synergyName) + 1);
                 } else {
                     synergyCountMap.put(synergyName, 1);
                 }
             }
         }
+        Set<Synergy> synergySet = SYNERGY_MAP.values()
+                                             .stream()
+                                             .filter(synergy -> synergyCountMap.containsKey(synergy.getName()) && synergyCountMap.get(synergy.getName()) >= synergy.getCount())
+                                             .collect(Collectors.toSet());
 
-        return new HashSet<>();
+        return synergySet;
     }
 }

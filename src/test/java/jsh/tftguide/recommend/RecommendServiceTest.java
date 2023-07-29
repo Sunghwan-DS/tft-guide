@@ -32,7 +32,6 @@ public class RecommendServiceTest {
     public void setup() {
         Champions.loadChampionsInfo();
         Synergies.loadSyergiesInfo();
-        Reroll.loadRerollInfo();
     }
 
     @Test
@@ -43,6 +42,6 @@ public class RecommendServiceTest {
         var recommendRequest = RecommendRequest.builder().level(5).champions(useChampions).build();
         var recommendChampionList = recommendService.getBestChampions(recommendRequest);
         System.out.println(recommendChampionList.toString());
-        Assertions.assertEquals(recommendChampionList.get(0).getRecommendChampions().get(0).getName(), "세트");
+        Assertions.assertEquals(recommendChampionList.get(0).getRecommendChampions().get(0).getChampionName(), "세트");
     }
 }

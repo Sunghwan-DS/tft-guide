@@ -23,7 +23,7 @@ public class ChampionServiceImpl implements ChampionService {
                 return List.of();
             }
 
-            return Arrays.stream(championNos.split("\\|"))
+            return Arrays.stream(championNos.split(","))
                          .map(str -> CHAMPION_MAP.get(Long.parseLong(str))).toList();
         } catch (Exception e) {
             log.error("getChampionsByChampionNos error : {}", ExceptionUtils.getStackTrace(e));
