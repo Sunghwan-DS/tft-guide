@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class Items {
 
-    private static final String PATH = "csv/items.csv";
+    private static final String PATH = "static/csv/items.csv";
     public static Map<Long, Item> itemsMap;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
