@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static jsh.tftguide.champion.domain.Champions.CHAMPION_MAP;
+import static jsh.tftguide.champion.domain.Reroll.RerollMap;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +24,7 @@ public class RecommendServiceImpl implements RecommendService {
     private final SynergyService synergyService;
 
     @Override
-    public List<Champion> getBestChampions(List<Champion> champions, long level) {
+    public List<Champion> getBestChampions(List<Champion> champions, int level) {
 
         var addCount = level - champions.size();
         if (addCount < 1) {
@@ -35,7 +36,7 @@ public class RecommendServiceImpl implements RecommendService {
                                       .collect(Collectors.toSet());
 
         bestChampionResult = AddChampionResult.emptyOf();
-        addBestChampion(useChampionIdSet, addCount, AddChampionResult.emptyOf());
+        addBestChampion(useChampionIdSet, addCount, level, AddChampionResult.emptyOf());
 
         return bestChampionResult.getAddChampionIdSet()
                                  .stream()
@@ -43,7 +44,7 @@ public class RecommendServiceImpl implements RecommendService {
                                  .toList();
     }
 
-    private void addBestChampion(Set<Long> useChampionSet, long targetAddCount, AddChampionResult result) {
+    private void addBestChampion(Set<Long> useChampionSet, long targetAddCount, int level, AddChampionResult result) {
         if (result.getAddChampionIdSet().size() == targetAddCount) {
             compareBestSet(useChampionSet, result);
             return;
@@ -51,14 +52,15 @@ public class RecommendServiceImpl implements RecommendService {
 
         CHAMPION_MAP.values()
                     .stream()
+                    .filter(champion -> champion.getCost() <= RerollMap.get(level).getRecommendValidationCost())
                     .filter(champion -> !useChampionSet.contains(champion.getId()) && !result.getAddChampionIdSet().contains(champion.getId()))
-                    .forEach(champion -> nextStep(useChampionSet, targetAddCount, result, champion));
+                    .forEach(champion -> nextStep(useChampionSet, targetAddCount, level, result, champion));
 
     }
 
-    private void nextStep(Set<Long> useChampionSet, long targetAddCount, AddChampionResult result, Champion champion) {
+    private void nextStep(Set<Long> useChampionSet, long targetAddCount, int level, AddChampionResult result, Champion champion) {
         result.getAddChampionIdSet().add(champion.getId());
-        addBestChampion(useChampionSet, targetAddCount, result);
+        addBestChampion(useChampionSet, targetAddCount, level, result);
         result.getAddChampionIdSet().remove(champion.getId());
     }
 

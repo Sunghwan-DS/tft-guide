@@ -5,8 +5,6 @@ import lombok.Data;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Data
 public class Champion {
@@ -16,7 +14,7 @@ public class Champion {
     @CsvBindByPosition(position = 1)
     private String name;
     @CsvBindByPosition(position = 2)
-    private long cost;
+    private int cost;
     @CsvBindByPosition(position = 3)
     private String synergiesStr;
     @CsvBindByPosition(position = 4)

@@ -19,6 +19,7 @@ public class Champions {
 
     private static final String PATH = "static/csv/champions.csv";
     public static Map<Long, Champion> CHAMPION_MAP;
+    public static Map<String, Champion> CHAMPION_NAME_MAP;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @SneakyThrows
@@ -44,6 +45,10 @@ public class Champions {
                           .collect(Collectors.toMap(i1 -> i1.getId(),
                                                     i2 -> i2)
                           );
+        CHAMPION_NAME_MAP = csv.stream()
+                               .collect(Collectors.toMap(i1 -> i1.getName(),
+                                                         i2 -> i2)
+                               );
     }
 
     @EventListener(ApplicationReadyEvent.class)

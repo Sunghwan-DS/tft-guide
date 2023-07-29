@@ -7,7 +7,7 @@ import lombok.Value;
 @Value
 public class GameGuideRequest {
 
-    Long level;
+    int level;
     String adItemYn;
     String apItemYn;
     String defItemYn;
