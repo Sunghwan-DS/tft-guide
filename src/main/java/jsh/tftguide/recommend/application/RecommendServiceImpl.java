@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,9 +35,16 @@ public class RecommendServiceImpl implements RecommendService {
         var useChampionIdSet = champions.stream()
                                       .map(Champion::getId)
                                       .collect(Collectors.toSet());
+        var useSynergySet = synergyService.getSynergySetByChampionIdSet(useChampionIdSet);
 
         bestChampionResult = AddChampionResult.emptyOf();
         addBestChampion(useChampionIdSet, addCount, level, AddChampionResult.emptyOf());
+        Set<Long> addChampionIdSet = new HashSet<>();
+        addChampionIdSet.addAll(useChampionIdSet);
+        addChampionIdSet.addAll(bestChampionResult.getAddChampionIdSet());
+
+        var addSynergies = synergyService.getSynergySetByChampionIdSet(addChampionIdSet);
+        bestChampionResult.setAddSynergySet(addSynergies);
 
         return bestChampionResult.getAddChampionIdSet()
                                  .stream()
