@@ -1,11 +1,11 @@
 package jsh.tftguide.recommend.application;
 
 import jsh.tftguide.champion.domain.Champion;
+import jsh.tftguide.champion.domain.ChampionCard;
 import jsh.tftguide.recommend.domain.AddChampionResult;
 import jsh.tftguide.recommend.domain.RecommendChampion;
 import jsh.tftguide.recommend.domain.RecommendRequest;
 import jsh.tftguide.synergy.application.SynergyService;
-import jsh.tftguide.synergy.domain.Synergy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +53,7 @@ public class RecommendServiceImpl implements RecommendService {
         return List.of(RecommendChampion.builder()
                                         .recommendChampions(bestChampionResult.getAddChampionIdSet()
                                                                               .stream()
-                                                                              .map(championId -> CHAMPION_MAP.get(championId))
+                                                                              .map(championId -> ChampionCard.convert(CHAMPION_MAP.get(championId)))
                                                                               .toList())
                                         .additionalSynergies(additionalSynergies)
                                         .aceChampion(null)

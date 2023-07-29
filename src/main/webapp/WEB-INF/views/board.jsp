@@ -1,3 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page import="jsh.tftguide.champion.domain.Champion" %>
+<%@ page import="java.util.List" %>
+<%
+    List<Champion> champions = (List<Champion>) request.getAttribute("champions");
+%>
+
 <!DOCTYPE HTML>
 <html lang="ko">
 <head>
@@ -71,6 +78,17 @@
                 <div>이미지2</div>
                 <div>이름2</div>
             </li>
+        </ul>
+    </div>
+
+    <div id="champion_list" class="flexBox">
+        <ul class="champion_list">
+            <% for (Champion champion : champions) { %>
+            <li>
+                <div><img src="<%=champion.getImageFilePath() + champion.getImageFileName()%>.png"></div>
+                <div><%=champion.getName()%></div>
+            </li>
+            <% } %>
         </ul>
     </div>
 

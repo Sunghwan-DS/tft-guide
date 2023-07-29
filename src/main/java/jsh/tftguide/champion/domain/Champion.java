@@ -19,7 +19,9 @@ public class Champion {
     private String synergiesStr;
     @CsvBindByPosition(position = 4)
     private long value;
-    private List<String> synergies;
+    @CsvBindByPosition(position = 5)
+    private String imageFileName;
+    private String imageFilePath = "img/champion/";
 
     public List<String> getSynergyNames() {
         return Arrays.asList(synergiesStr.split("\\|"));
